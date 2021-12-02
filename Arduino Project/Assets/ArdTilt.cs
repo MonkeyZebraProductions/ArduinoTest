@@ -9,6 +9,8 @@ public class ArdTilt : MonoBehaviour
     public float ArdY;
     public float ArdZ;
 
+    public float LerpValue=0.2f;
+
     public SerialController serialController;
     void Start()
     {
@@ -39,6 +41,6 @@ public class ArdTilt : MonoBehaviour
         ArdX = float.Parse(ArdString[0]);
         ArdY = float.Parse(ArdString[1]);
         ArdZ = float.Parse(ArdString[2]);
-        transform.rotation = Quaternion.EulerAngles(ArdX, ArdY, ArdZ);
+        transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.EulerAngles(ArdX, ArdY, ArdZ),LerpValue);
     }
 }
