@@ -10,11 +10,13 @@ public class ArdTilt : MonoBehaviour
     public float ArdZ;
 
     public float LerpValue=0.2f;
+    private player2Controls invert;
 
     public SerialController serialController;
     void Start()
     {
         serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
+        invert = FindObjectOfType<player2Controls>();
     }
 
     // Update is called once per frame
@@ -41,6 +43,14 @@ public class ArdTilt : MonoBehaviour
         ArdX = float.Parse(ArdString[0]);
         ArdY = float.Parse(ArdString[1]);
         ArdZ = float.Parse(ArdString[2]);
-        transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.EulerAngles(ArdX, 0, ArdZ),LerpValue);
+        if(invert._isInverted)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.EulerAngles(-ArdX, 0, -ArdZ), LerpValue)*;
+        }
+        else
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.EulerAngles(ArdX, 0, ArdZ), LerpValue);
+        }
+        
     }
 }

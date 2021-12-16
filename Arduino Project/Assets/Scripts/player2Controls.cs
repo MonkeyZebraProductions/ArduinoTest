@@ -11,7 +11,8 @@ public class player2Controls : MonoBehaviour
     public SphereCollider ballMaterial;
 
     public float darkTime, abilityCD, dyDrag = 0.075f, stDrag = 0.15f;
-    public bool darkness = false, abilityReady = true;
+    public bool darkness = false, abilityReady = true, _isInverted;
+   
     //public Color tempAlpha;
 
     void Start()
@@ -52,10 +53,9 @@ public class player2Controls : MonoBehaviour
     public IEnumerator Invert()
     {
         {
-            invertControls.ArdX = -invertControls.ArdX;
-            invertControls.ArdY = -invertControls.ArdY;
-            invertControls.ArdZ = -invertControls.ArdZ;
+            _isInverted = true;
             yield return new WaitForSeconds(darkTime);
+            _isInverted = false;
         }
     }
 
