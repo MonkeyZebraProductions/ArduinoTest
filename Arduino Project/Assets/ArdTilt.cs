@@ -41,6 +41,6 @@ public class ArdTilt : MonoBehaviour
         ArdX = float.Parse(ArdString[0]);
         ArdY = float.Parse(ArdString[1]);
         ArdZ = float.Parse(ArdString[2]);
-        transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.EulerAngles(ArdX, ArdY, ArdZ),LerpValue);
+        transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.EulerAngles(ArdX, 0, ArdZ),LerpValue);
     }
 }
