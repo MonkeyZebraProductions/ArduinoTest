@@ -10,7 +10,11 @@ public class hamsterScoreDeath : MonoBehaviour
 
     public TextMeshProUGUI gameOver, scoreText;
 
+    public GameObject groundTilt;
+
     public float score;
+
+    public AudioSource failSound;
 
 
     void Start()
@@ -29,11 +33,14 @@ public class hamsterScoreDeath : MonoBehaviour
         if(other.gameObject.tag == "Hole")
         {
             gameOver.gameObject.SetActive(true);
+            failSound.Play();
+            groundTilt.GetComponent<ArdTilt>().enabled = false;
         }
 
         if (other.gameObject.tag == "Carrot")
         {
             score += 1;
+            other.gameObject.SetActive(false);
         }
     }
 }
